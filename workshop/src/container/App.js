@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import FilterIzq from '../components/FilterIzq';
@@ -17,6 +18,16 @@ function App() {
       </Routes>
     </BrowserRouter>
 
+=======
+import Cards from '../components/Cards';
+import '../styles/App.css';
+
+function App() {
+  return (
+    <div className="App">
+     <Cards/>
+    </div>
+>>>>>>> 9362f9cd8f0e5a3a644f0245031f25c3ab3e078b
   );
 }
 

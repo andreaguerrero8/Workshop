@@ -1,0 +1,103 @@
+.container-main{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+    height: 100vh;
+    gap: 1rem;
+}
+
+.nav-filter{
+    display: flex;
+    width: 100%;
+}
+
+/* #76B900 */
+
+.lista-filter{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 2px solid gray; 
+    gap: 2rem;
+    list-style: none;
+    padding: .5rem;
+}
+
+.filter-date{
+    color: rgba(0, 0, 0, 0.598);
+    font-weight: lighter;
+    text-transform: capitalize;
+}
+
+.container-card{
+    width: 100%;
+    height: 100vh;
+    padding: .4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-item{
+    background: #ffff;
+    padding: 1rem;
+    display: flex; 
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.204);
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title{
+    color: #76B900;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
+
+.card-header img{
+    margin-right: 1rem;
+    background: yellow
+}
+
+.card-descripcion{
+    color: rgba(76, 76, 76, 0.675);
+}
+
+.card-speakers{
+    display: flex;
+    gap: 1rem;
+}
+
+.speaker{
+    font-weight: lighter;
+    text-transform: capitalize;
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: #76B900;
+}
+
+.card-SegmentIndustry{
+    text-transform: capitalize;
+}
+
+.card-SegmentIndustry span{
+    color: rgba(0, 0, 0, 0.497);
+    font-weight: lighter;
+}
+
+.card-mainTopic{
+    text-transform: capitalize;
+}
+
+.card-mainTopic span{
+    color: rgba(0, 0, 0, 0.497);
+    font-weight: lighter;
+}
