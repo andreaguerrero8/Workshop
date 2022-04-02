@@ -5,12 +5,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../hooks/useForm';
 import querystring from 'query-string'
 import { DivFilIzq, DivH, InputSearch } from '../styled/styleds';
-import Cards from './Cards';
-import getMoviesByName from '../selectors/getMovieByName';
-
-// import SearchIcon from '@mui/icons-material/Search';
-
-import { url } from '../url/url'
+import {url} from '../url/url'
+import Cards from '../components/Cards';
 
 
 
@@ -225,7 +221,14 @@ const FilterIzq = () => {
                             </Accordion.Item>
                         </Accordion>
                     </div>
-                    <div className="col-8">
+
+                    <div className="col-7">
+                        <Cards/>
+                        {/* {
+                                moviesFiltered.map(movie => (
+                                    <MovieCard id={movie.id} name={movie.name} />
+                                ))
+                            } */}
 
                         <Cards />
                     </div>
