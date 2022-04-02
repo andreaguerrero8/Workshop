@@ -14,7 +14,7 @@ const Cards = () => {
       const request = await fetch(url);
       const data = await request.json();
       setData(data);
-      dates(datas);
+      dates(data);
     } catch (err) {
       console.log(err);
     }
@@ -22,16 +22,16 @@ const Cards = () => {
 
   const dates = (dates) => {
     dates.map((element) => {
-      const dateNew = new Date("es-ES", element.date).toDateString();
-      console.log(dateNew);
+      const dateNew = new Date(element.date).toDateString();
+      const algo = Date('YYYY-MM-DD')
+      // console.log(dateNew);
+      console.log(algo);
     });
   };
 
   useEffect(() => {
     fetchFunction();
   }, []);
-
-  
 
   return (
     <div className="container-main">
@@ -47,9 +47,9 @@ const Cards = () => {
         </div>
       }
       <DataContext.Provider value={datas}>
-      <div className="container-card1">
-        {datas.map((element) => {
-          return (
+        <div className="container-card1">
+          {datas.map((element) => {
+            return (
               <div className="card-item1" key={element.id}>
                 <div className="card-header1">
                   <h2 className="card-title1">{element.title}</h2>
@@ -68,9 +68,9 @@ const Cards = () => {
                   Tema principal: <span>{element.primary_topic}</span>
                 </h4>
               </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
       </DataContext.Provider>
     </div>
   );

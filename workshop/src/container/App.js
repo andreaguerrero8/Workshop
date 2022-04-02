@@ -5,6 +5,7 @@ import FilterIzq from '../components/FilterIzq';
 
 function App() {
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<FilterIzq />} />
