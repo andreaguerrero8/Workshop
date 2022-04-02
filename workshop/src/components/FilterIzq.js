@@ -6,6 +6,7 @@ import querystring from 'query-string'
 import { DivFilIzq, DivH } from '../styled/styleds';
 import {url} from '../url/url'
 import axios from 'axios';
+import Cards from '../components/Cards';
 
 
 
@@ -255,9 +256,7 @@ const FilterIzq = () => {
                         </Accordion>
                     </div>
                     <div className="col-7">
-                        <h4>  </h4>
-                        <hr />
-
+                        <Cards/>
                         {/* {
                                 moviesFiltered.map(movie => (
                                     <MovieCard id={movie.id} name={movie.name} />
