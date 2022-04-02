@@ -14,7 +14,7 @@ const Cards = ({Filtrados}) => {
       const request = await fetch(url);
       const data = await request.json();
       setData(data);
-      dates(datas);
+      dates(data);
     } catch (err) {
       console.log(err);
     }
@@ -22,7 +22,7 @@ const Cards = ({Filtrados}) => {
 
   const dates = (dates) => {
     dates.map((element) => {
-      const dateNew = new Date("es-ES", element.date).toDateString();
+      const dateNew = new Date(element.data).toDateString();
       console.log(dateNew);
     });
   };
@@ -46,9 +46,9 @@ const Cards = ({Filtrados}) => {
           </ul>
         </div>
       }
-      <DataContext.Provider value={datas}>
+
       <div className="container-card1">
-        {datas.map((element) => {
+        {data.map((element) => {
           return (
               <div className="card-item1" key={element.id}>
                 <div className="card-header1">
@@ -71,7 +71,6 @@ const Cards = ({Filtrados}) => {
           );
         })}
       </div>
-      </DataContext.Provider>
     </div>
   );
 };
