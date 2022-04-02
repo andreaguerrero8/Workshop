@@ -3,7 +3,7 @@ import "../styles/Cards.css";
 import star from "../Images/iconmonstr-star-thin.svg";
 import axios from "axios";
 
-const Cards = () => {
+const Cards = ({Filtrados}) => {
 
   const [data, setData] = useState([]);
   const [date, setDate] = useState([])

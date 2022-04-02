@@ -7,7 +7,7 @@ import querystring from 'query-string'
 import { DivFilIzq, DivH, InputSearch } from '../styled/styleds';
 import { url } from '../url/url'
 import Cards from '../components/Cards';
-import {CardsFilt} from '../components/CardsFilt';
+import { CardsFilt } from '../components/CardsFilt';
 import getSearchByName from '../selectors/getSearchByName';
 
 
@@ -17,6 +17,7 @@ const FilterIzq = () => {
 
     //-------------------data----------------------//
     const [data, setData] = useState([])
+
     const getData = () => {
         axios.get(url)
             .then(resp =>
@@ -30,6 +31,9 @@ const FilterIzq = () => {
         getData()
 
     }, [])
+
+    let algo =  data.filter(element => new Set(element.industry_segment))
+    // console.log(algo);
 
 
     //-----------------------search---------------------//
@@ -55,8 +59,7 @@ const FilterIzq = () => {
     }
 
     const dataFiltered = getSearchByName(searchText, data)
-    console.log(dataFiltered);
-
+    // console.log(dataFiltered);
 
     return (
         <DivFilIzq>
@@ -92,8 +95,8 @@ const FilterIzq = () => {
                                 <Accordion.Body>
 
                                     {
-                                        data.map(element => (
 
+                                        data.map(element => (
                                             <Form key={element.id}>
                                                 <div className="mb-3">
                                                     <Form.Check
@@ -237,10 +240,10 @@ const FilterIzq = () => {
                     </div>
 
                     <div className="col-7">
-                        {/* <Cards Filtrados={dataFiltered} /> */}
+                        <Cards Filtrados={dataFiltered} />
 
 
-                        <CardsFilt data={dataFiltered} />
+                        {/* <CardsFilt data={dataFiltered} /> */}
 
                     </div>
                 </div>
