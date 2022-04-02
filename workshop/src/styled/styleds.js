@@ -7,5 +7,13 @@ export const DivFilIzq = styled.div`
 export const DivH = styled.div`
     display: flex;
     align-items: center;
-    justify-content:space-between
+    justify-content:space-between;
+    padding: 0 3%;
+`
+
+export const InputSearch = styled.input`
+    border-radius: 20px;
+    padding-left: 7%;
+    margin-left: 2%
+
 `

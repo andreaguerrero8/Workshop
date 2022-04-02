@@ -1,16 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import React, {useState } from 'react'
 import { Accordion, Form } from 'react-bootstrap'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../hooks/useForm';
 import querystring from 'query-string'
+<<<<<<< HEAD
 import { DivFilIzq, DivH } from '../styled/styleds';
 import {url} from '../url/url'
 import axios from 'axios';
 import Cards from '../components/Cards';
+=======
+import { DivFilIzq, DivH, InputSearch } from '../styled/styleds';
+import Cards from './Cards';
+import getMoviesByName from '../selectors/getMovieByName';
+
+// import SearchIcon from '@mui/icons-material/Search';
+
+import { url } from '../url/url'
+>>>>>>> e499bd0d490214f866a47b8e2292a39bc62c1bf6
 
 
 
 const FilterIzq = () => {
+
+    const [data, setData] = useState([])
+
+    const getData = () => {
+        axios.get(url)
+            .then(resp => setData(resp.data))
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    getData()
+
+
+    //-----------------------search---------------------//
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -23,38 +49,14 @@ const FilterIzq = () => {
         searchText: q
     })
 
-    const { searchText } = values
-
+    const {searchText} = values
+    
     const handleSubmit = (e) => {
         e.preventDefault()
-        // navigate(`?q=${searchText}`) //la (?q) quiere decir query
+        navigate(`?q=${searchText}`) //la (?q) quiere decir query
     }
 
-    // const moviesFiltered = getMoviesByName(searchText)
-    // console.log(moviesFiltered);
-
-
-
-    const [data, setData] = useState([])
-
-    const getData = () => {
-        axios.get(url)
-            .then((response) => {
-                setData(response.data);
-
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
-
-    useEffect(() => {
-        getData()
-    }, [])
-    
-
-
-
+    const moviesFiltered = getMoviesByName(searchText)
 
     return (
         <DivFilIzq>
@@ -71,9 +73,9 @@ const FilterIzq = () => {
 
                         <hr />
                         <form onSubmit={handleSubmit}>
-                            <input
+                            <InputSearch
                                 type="text"
-                                placeholder="Find your hero"
+                                placeholder="Search"
                                 className="form-control"
                                 name="searchText"
                                 autoComplete="off"
@@ -82,6 +84,7 @@ const FilterIzq = () => {
                             />
 
                         </form>
+                        {/* <SearchIcon/> */}
 
                         <br></br>
                         <Accordion>
@@ -89,46 +92,23 @@ const FilterIzq = () => {
                                 <Accordion.Header>Industry Segment</Accordion.Header>
                                 <Accordion.Body>
 
-                                    <Form>
-                                        {
-                                        
-                                        data.map((type) => (
-                                            <div key={type.id} className="mb-3">
-                                                <Form.Check
-                                                    type='checkbox'
-                                                    id={type.id}
-                                                    label={`Metrics`}
-                                                />
+                                    {
+                                        data.map(element => (
 
-                                                <Form.Check
-                                                    type='checkbox'
-                                                    id={`default-`}
-                                                    label={`Metrics`}
-                                                />
+                                            <Form>
+                                                <div key={element.id} className="mb-3">
+                                                    <Form.Check
+                                                        type="checkbox"
+                                                        id={element.id}
+                                                        label={element.industry_segment}
+                                                    />
 
-                                                <Form.Check
-                                                    type='checkbox'
-                                                    id={`default-`}
-                                                    label={`default`}
-                                                />
+                                                </div>
+                                            </Form>
 
-                                                <Form.Check
-                                                    type='checkbox'
-                                                    id={`default-`}
-                                                    label={`default`}
-                                                />
-
-                                                <Form.Check
-                                                    type='checkbox'
-                                                    id={`default-`}
-                                                    label={`default `}
-                                                />
-
-                                            </div>
                                         ))
-                                        
-                                        }
-                                    </Form>
+                                    }
+
 
                                 </Accordion.Body>
                             </Accordion.Item>
@@ -137,131 +117,137 @@ const FilterIzq = () => {
                                 <Accordion.Header>Primary Topic</Accordion.Header>
                                 <Accordion.Body>
 
-                                    <Form>
-                                        {['checkbox'].map((type) => (
-                                            <div key={`default-${type}`} className="mb-3">
-                                                <Form.Check
-                                                    type={type}
-                                                    id={`default-${type}`}
-                                                    label={`default ${type}`}
-                                                />
+                                    {
+                                        data.map(element => (
 
-                                            </div>
-                                        ))}
-                                    </Form>
+                                            <Form>
+                                                <div key={element.id} className="mb-3">
+                                                    <Form.Check
+                                                        type="checkbox"
+                                                        id={element.id}
+                                                        label={element.primary_topic}
+                                                    />
+
+                                                </div>
+                                            </Form>
+
+                                        ))
+                                    }
 
                                 </Accordion.Body>
                             </Accordion.Item>
 
                             <Accordion.Item eventKey="2">
-                                <Accordion.Header>Other Collections</Accordion.Header>
+                                <Accordion.Header>Session type</Accordion.Header>
                                 <Accordion.Body>
 
-                                    <Form>
-                                        {['checkbox'].map((type) => (
-                                            <div key={`default-${type}`} className="mb-3">
-                                                <Form.Check
-                                                    type={type}
-                                                    id={`default-${type}`}
-                                                    label={`default ${type}`}
-                                                />
+                                    {
+                                        data.map(element => (
 
-                                            </div>
-                                        ))}
-                                    </Form>
+                                            <Form>
+                                                <div key={element.id} className="mb-3">
+                                                    <Form.Check
+                                                        type="checkbox"
+                                                        id={element.id}
+                                                        label={element.session_type}
+                                                    />
+
+                                                </div>
+                                            </Form>
+
+                                        ))
+                                    }
 
                                 </Accordion.Body>
                             </Accordion.Item>
 
 
                             <Accordion.Item eventKey="3">
-                                <Accordion.Header>Session Type</Accordion.Header>
+                                <Accordion.Header>Audience Type</Accordion.Header>
                                 <Accordion.Body>
 
-                                    <Form>
-                                        {['checkbox'].map((type) => (
-                                            <div key={`default-${type}`} className="mb-3">
-                                                <Form.Check
-                                                    type={type}
-                                                    id={`default-${type}`}
-                                                    label={`default ${type}`}
-                                                />
+                                    {
+                                        data.map(element => (
 
-                                            </div>
-                                        ))}
-                                    </Form>
+                                            <Form>
+                                                <div key={element.id} className="mb-3">
+                                                    <Form.Check
+                                                        type="checkbox"
+                                                        id={element.id}
+                                                        label={element.audience_type}
+                                                    />
+
+                                                </div>
+                                            </Form>
+
+                                        ))
+                                    }
 
                                 </Accordion.Body>
                             </Accordion.Item>
 
+                            
                             <Accordion.Item eventKey="4">
-                                <Accordion.Header>Audience Type</Accordion.Header>
+                                <Accordion.Header>Lenguage</Accordion.Header>
                                 <Accordion.Body>
 
-                                    <Form>
-                                        {['checkbox'].map((type) => (
-                                            <div key={`default-${type}`} className="mb-3">
-                                                <Form.Check
-                                                    type={type}
-                                                    id={`default-${type}`}
-                                                    label={`default ${type}`}
-                                                />
+                                    {
+                                        data.map(element => (
 
-                                            </div>
-                                        ))}
-                                    </Form>
+                                            <Form>
+                                                <div key={element.id} className="mb-3">
+                                                    <Form.Check
+                                                        type="checkbox"
+                                                        id={element.id}
+                                                        label={element.lenguage}
+                                                    />
+
+                                                </div>
+                                            </Form>
+
+                                        ))
+                                    }
 
                                 </Accordion.Body>
                             </Accordion.Item>
 
                             <Accordion.Item eventKey="5">
-                                <Accordion.Header>Audience Level</Accordion.Header>
+                                <Accordion.Header>Audence Level</Accordion.Header>
                                 <Accordion.Body>
 
-                                    <Form>
-                                        {['checkbox'].map((type) => (
-                                            <div key={`default-${type}`} className="mb-3">
-                                                <Form.Check
-                                                    type={type}
-                                                    id={`default-${type}`}
-                                                    label={`default ${type}`}
-                                                />
+                                    {
+                                        data.map(element => (
 
-                                            </div>
-                                        ))}
-                                    </Form>
+                                            <Form>
+                                                <div key={element.id} className="mb-3">
+                                                    <Form.Check
+                                                        type="checkbox"
+                                                        id={element.id}
+                                                        label={element.audience_level}
+                                                    />
 
-                                </Accordion.Body>
-                            </Accordion.Item>
+                                                </div>
+                                            </Form>
 
-                            <Accordion.Item eventKey="6">
-                                <Accordion.Header>Accordion Item #2</Accordion.Header>
-                                <Accordion.Body>
-
-                                    <Form>
-                                        {['checkbox'].map((type) => (
-                                            <div key={`default-${type}`} className="mb-3">
-                                                <Form.Check
-                                                    type={type}
-                                                    id={`default-${type}`}
-                                                    label={`default ${type}`}
-                                                />
-
-                                            </div>
-                                        ))}
-                                    </Form>
+                                        ))
+                                    }
 
                                 </Accordion.Body>
                             </Accordion.Item>
                         </Accordion>
                     </div>
                     <div className="col-7">
+<<<<<<< HEAD
                         <Cards/>
                         {/* {
                                 moviesFiltered.map(movie => (
                                     <MovieCard id={movie.id} name={movie.name} />
                                 ))
                             } */}
+=======
+
+                        <Cards />
+>>>>>>> e499bd0d490214f866a47b8e2292a39bc62c1bf6
                     </div>
                 </div>
             </div>
