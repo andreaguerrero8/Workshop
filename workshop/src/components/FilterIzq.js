@@ -1,25 +1,12 @@
-<<<<<<< HEAD
 import React, {useState } from 'react'
-=======
-import axios from 'axios';
-import React, { useState } from 'react'
->>>>>>> 6b66a097036cad8ef28c3735075077b99c75cb7c
 import { Accordion, Form } from 'react-bootstrap'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../hooks/useForm';
 import querystring from 'query-string'
-<<<<<<< HEAD
-import { DivFilIzq, DivH } from '../styled/styleds';
-=======
 import { DivFilIzq, DivH, InputSearch } from '../styled/styleds';
->>>>>>> 6b66a097036cad8ef28c3735075077b99c75cb7c
 import {url} from '../url/url'
 import Cards from '../components/Cards';
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 6b66a097036cad8ef28c3735075077b99c75cb7c
+import axios from 'axios';
 
 const FilterIzq = () => {
 
@@ -240,11 +227,6 @@ const FilterIzq = () => {
                                     <MovieCard id={movie.id} name={movie.name} />
                                 ))
                             } */}
-<<<<<<< HEAD
-=======
-
-                        <Cards />
->>>>>>> 6b66a097036cad8ef28c3735075077b99c75cb7c
                     </div>
                 </div>
             </div>
