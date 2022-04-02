@@ -77,7 +77,6 @@ const FilterIzq = () => {
 
                                     {
                                         data.map(element => (
-
                                             <Form key={element.id}>
                                                 <div  className="mb-3">
                                                     <Form.Check
@@ -85,7 +84,6 @@ const FilterIzq = () => {
                                                         id={element.id}
                                                         label={element.industry_segment}
                                                     />
-
                                                 </div>
                                             </Form>
 
@@ -103,8 +101,8 @@ const FilterIzq = () => {
                                     {
                                         data.map(element => (
 
-                                            <Form>
-                                                <div key={element.id} className="mb-3">
+                                            <Form  key={element.id}>
+                                                <div className="mb-3">
                                                     <Form.Check
                                                         type="checkbox"
                                                         id={element.id}
@@ -127,8 +125,8 @@ const FilterIzq = () => {
                                     {
                                         data.map(element => (
 
-                                            <Form>
-                                                <div key={element.id} className="mb-3">
+                                            <Form key={element.id}>
+                                                <div className="mb-3">
                                                     <Form.Check
                                                         type="checkbox"
                                                         id={element.id}
@@ -152,8 +150,8 @@ const FilterIzq = () => {
                                     {
                                         data.map(element => (
 
-                                            <Form>
-                                                <div key={element.id} className="mb-3">
+                                            <Form key={element.id}>
+                                                <div className="mb-3">
                                                     <Form.Check
                                                         type="checkbox"
                                                         id={element.id}
@@ -177,8 +175,8 @@ const FilterIzq = () => {
                                     {
                                         data.map(element => (
 
-                                            <Form>
-                                                <div key={element.id} className="mb-3">
+                                            <Form key={element.id}>
+                                                <div className="mb-3">
                                                     <Form.Check
                                                         type="checkbox"
                                                         id={element.id}
@@ -201,8 +199,8 @@ const FilterIzq = () => {
                                     {
                                         data.map(element => (
 
-                                            <Form>
-                                                <div key={element.id} className="mb-3">
+                                            <Form key={element.id}>
+                                                <div className="mb-3">
                                                     <Form.Check
                                                         type="checkbox"
                                                         id={element.id}

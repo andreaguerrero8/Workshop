@@ -3,6 +3,7 @@ import "../styles/Cards.css";
 import star from "../Images/iconmonstr-star-thin.svg";
 
 const Cards = () => {
+  const DataContext = React.createContext();
   const [datas, setData] = useState([]);
   const [date, setDate] = useState([]);
 
@@ -30,6 +31,8 @@ const Cards = () => {
     fetchFunction();
   }, []);
 
+  
+
   return (
     <div className="container-main">
       {
@@ -43,10 +46,10 @@ const Cards = () => {
           </ul>
         </div>
       }
+      <DataContext.Provider value={datas}>
       <div className="container-card1">
         {datas.map((element) => {
           return (
-            <>
               <div className="card-item1" key={element.id}>
                 <div className="card-header1">
                   <h2 className="card-title1">{element.title}</h2>
@@ -65,10 +68,10 @@ const Cards = () => {
                   Tema principal: <span>{element.primary_topic}</span>
                 </h4>
               </div>
-            </>
           );
         })}
       </div>
+      </DataContext.Provider>
     </div>
   );
 };
