@@ -10,6 +10,7 @@
 .nav-filter{
     display: flex;
     width: 100%;
+    display: flex;
 }
 
 /* #76B900 */
@@ -17,18 +18,22 @@
 .lista-filter{
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-direction: row;
     border-bottom: 2px solid gray; 
-    gap: 2rem;
     list-style: none;
     padding: .5rem;
+    background: red;
+    overflow: hidden;
 }
 
 .filter-date{
     color: rgba(0, 0, 0, 0.598);
     font-weight: lighter;
     text-transform: capitalize;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
 }
 
 .container-card1{
