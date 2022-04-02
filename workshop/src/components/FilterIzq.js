@@ -1,22 +1,48 @@
+<<<<<<< HEAD
 import React, {useState } from 'react'
+=======
+import axios from 'axios';
+import React, { useState } from 'react'
+>>>>>>> 6b66a097036cad8ef28c3735075077b99c75cb7c
 import { Accordion, Form } from 'react-bootstrap'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../hooks/useForm';
 import querystring from 'query-string'
+<<<<<<< HEAD
 import { DivFilIzq, DivH } from '../styled/styleds';
+=======
+import { DivFilIzq, DivH, InputSearch } from '../styled/styleds';
+>>>>>>> 6b66a097036cad8ef28c3735075077b99c75cb7c
 import {url} from '../url/url'
-import axios from 'axios';
 import Cards from '../components/Cards';
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 6b66a097036cad8ef28c3735075077b99c75cb7c
 
 const FilterIzq = () => {
 
+    const [values, handleInputChange, resetForm] = useForm({
+        searchText: ''
+    })
+
+    const {searchText}  = values
+
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        console.log(searchText);
+    }
+
+
     const [data, setData] = useState([])
+    const [dataSearch, setDataSearch] = useState([])
 
     const getData = () => {
         axios.get(url)
-            .then(resp => setData(resp.data))
+            .then(resp => 
+                setData(resp.data)
+            )
             .catch((error) => {
                 console.log(error);
             })
@@ -24,28 +50,9 @@ const FilterIzq = () => {
 
     getData()
 
-
     //-----------------------search---------------------//
 
-    const navigate = useNavigate()
-    const location = useLocation()
-
-    const { search } = location
-    const { q = '' } = querystring.parse(search)
-
-
-    const [values, handleInputChange, resetForm] = useForm({
-        searchText: q
-    })
-
-    const {searchText} = values
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        navigate(`?q=${searchText}`) //la (?q) quiere decir query
-    }
-
-    const moviesFiltered = getMoviesByName(searchText)
+   
 
     return (
         <DivFilIzq>
@@ -84,8 +91,8 @@ const FilterIzq = () => {
                                     {
                                         data.map(element => (
 
-                                            <Form>
-                                                <div key={element.id} className="mb-3">
+                                            <Form key={element.id}>
+                                                <div  className="mb-3">
                                                     <Form.Check
                                                         type="checkbox"
                                                         id={element.id}
@@ -175,7 +182,7 @@ const FilterIzq = () => {
                                 </Accordion.Body>
                             </Accordion.Item>
 
-                            
+
                             <Accordion.Item eventKey="4">
                                 <Accordion.Header>Lenguage</Accordion.Header>
                                 <Accordion.Body>
@@ -225,6 +232,7 @@ const FilterIzq = () => {
                             </Accordion.Item>
                         </Accordion>
                     </div>
+
                     <div className="col-7">
                         <Cards/>
                         {/* {
@@ -232,6 +240,11 @@ const FilterIzq = () => {
                                     <MovieCard id={movie.id} name={movie.name} />
                                 ))
                             } */}
+<<<<<<< HEAD
+=======
+
+                        <Cards />
+>>>>>>> 6b66a097036cad8ef28c3735075077b99c75cb7c
                     </div>
                 </div>
             </div>
