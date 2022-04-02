@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "../styles/Cards.css";
 import star from "../Images/iconmonstr-star-thin.svg";
 
-const Cards = () => {
-  const DataContext = React.createContext();
-  const [datas, setData] = useState([]);
-  const [date, setDate] = useState([]);
+const Cards = ({Filtrados}) => {
+
+  const [data, setData] = useState([]);
+  const [date, setDate] = useState([])
 
   const url = "https://workshopdaniel.herokuapp.com/sessions";
 
@@ -23,9 +23,7 @@ const Cards = () => {
   const dates = (dates) => {
     dates.map((element) => {
       const dateNew = new Date(element.date).toDateString();
-      const algo = Date('YYYY-MM-DD')
-      // console.log(dateNew);
-      console.log(algo);
+      console.log(dateNew);
     });
   };
 
@@ -46,9 +44,8 @@ const Cards = () => {
           </ul>
         </div>
       }
-      <DataContext.Provider value={datas}>
         <div className="container-card1">
-          {datas.map((element) => {
+          {data.map((element) => {
             return (
               <div className="card-item1" key={element.id}>
                 <div className="card-header1">
@@ -71,7 +68,6 @@ const Cards = () => {
             );
           })}
         </div>
-      </DataContext.Provider>
     </div>
   );
 };
