@@ -1,23 +1,12 @@
-import axios from 'axios';
 import React, {useState } from 'react'
 import { Accordion, Form } from 'react-bootstrap'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../hooks/useForm';
 import querystring from 'query-string'
-<<<<<<< HEAD
 import { DivFilIzq, DivH } from '../styled/styleds';
 import {url} from '../url/url'
 import axios from 'axios';
 import Cards from '../components/Cards';
-=======
-import { DivFilIzq, DivH, InputSearch } from '../styled/styleds';
-import Cards from './Cards';
-import getMoviesByName from '../selectors/getMovieByName';
-
-// import SearchIcon from '@mui/icons-material/Search';
-
-import { url } from '../url/url'
->>>>>>> e499bd0d490214f866a47b8e2292a39bc62c1bf6
 
 
 
@@ -237,17 +226,12 @@ const FilterIzq = () => {
                         </Accordion>
                     </div>
                     <div className="col-7">
-<<<<<<< HEAD
                         <Cards/>
                         {/* {
                                 moviesFiltered.map(movie => (
                                     <MovieCard id={movie.id} name={movie.name} />
                                 ))
                             } */}
-=======
-
-                        <Cards />
->>>>>>> e499bd0d490214f866a47b8e2292a39bc62c1bf6
                     </div>
                 </div>
             </div>
