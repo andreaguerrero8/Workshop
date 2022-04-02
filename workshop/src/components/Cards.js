@@ -4,6 +4,7 @@ import star from "../Images/iconmonstr-star-thin.svg";
 import axios from "axios";
 
 const Cards = () => {
+
   const [data, setData] = useState([]);
   const [date, setDate] = useState([])
 
@@ -23,7 +24,6 @@ const Cards = () => {
 
   const dates = async(date) => {
     date.map(element => {
-        console.log(element.date);
 
     })
   }

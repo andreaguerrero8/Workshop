@@ -1,47 +1,62 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Accordion, Form } from 'react-bootstrap'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from '../hooks/useForm';
 import querystring from 'query-string'
 import { DivFilIzq, DivH, InputSearch } from '../styled/styleds';
-import {url} from '../url/url'
+import { url } from '../url/url'
 import Cards from '../components/Cards';
+import {CardsFilt} from '../components/CardsFilt';
+import getSearchByName from '../selectors/getSearchByName';
 
 
 
 const FilterIzq = () => {
 
-    const [values, handleInputChange, resetForm] = useForm({
-        searchText: ''
-    })
 
-    const {searchText}  = values
-
-    const handleSubmit = (e)=>{
-        e.preventDefault()
-        console.log(searchText);
-    }
-
-
+    //-------------------data----------------------//
     const [data, setData] = useState([])
-    const [dataSearch, setDataSearch] = useState([])
-
     const getData = () => {
         axios.get(url)
-            .then(resp => 
+            .then(resp =>
                 setData(resp.data)
             )
             .catch((error) => {
                 console.log(error);
             })
     }
+    useEffect(() => {
+        getData()
 
-    getData()
+    }, [])
+
 
     //-----------------------search---------------------//
 
-   
+
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const { search } = location
+    const { q = '' } = querystring.parse(search)
+
+
+    const [values, handleInputChange, resetForm] = useForm({
+        searchText: q
+    })
+
+    const { searchText } = values
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        navigate(`?q=${searchText}`)
+    }
+
+    const dataFiltered = getSearchByName(searchText, data)
+    console.log(dataFiltered);
+
 
     return (
         <DivFilIzq>
@@ -52,8 +67,7 @@ const FilterIzq = () => {
                         <DivH>
 
                             <h4>Filter</h4>
-
-                            <h5>Clear</h5>
+                            <button>Clear</button>
                         </DivH>
 
                         <hr />
@@ -81,7 +95,7 @@ const FilterIzq = () => {
                                         data.map(element => (
 
                                             <Form key={element.id}>
-                                                <div  className="mb-3">
+                                                <div className="mb-3">
                                                     <Form.Check
                                                         type="checkbox"
                                                         id={element.id}
@@ -223,14 +237,11 @@ const FilterIzq = () => {
                     </div>
 
                     <div className="col-7">
-                        <Cards/>
-                        {/* {
-                                moviesFiltered.map(movie => (
-                                    <MovieCard id={movie.id} name={movie.name} />
-                                ))
-                            } */}
+                        {/* <Cards Filtrados={dataFiltered} /> */}
 
-                        <Cards />
+
+                        <CardsFilt data={dataFiltered} />
+
                     </div>
                 </div>
             </div>
