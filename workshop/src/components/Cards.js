@@ -22,7 +22,7 @@ const Cards = ({Filtrados}) => {
 
   const dates = (dates) => {
     dates.map((element) => {
-      const dateNew = new Date(element.data).toDateString();
+      const dateNew = new Date(element.date).toDateString();
       console.log(dateNew);
     });
   };
@@ -30,8 +30,6 @@ const Cards = ({Filtrados}) => {
   useEffect(() => {
     fetchFunction();
   }, []);
-
-  
 
   return (
     <div className="container-main">
@@ -46,10 +44,9 @@ const Cards = ({Filtrados}) => {
           </ul>
         </div>
       }
-
-      <div className="container-card1">
-        {data.map((element) => {
-          return (
+        <div className="container-card1">
+          {data.map((element) => {
+            return (
               <div className="card-item1" key={element.id}>
                 <div className="card-header1">
                   <h2 className="card-title1">{element.title}</h2>
