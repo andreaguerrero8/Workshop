@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 
 export const DivFilIzq = styled.div`
-    margin: 2% 0 2% 5%;
+    margin: 2% 0 2% 2%;
+
+    @media (max-width: 768px){
+        margin : 3% 5%
+    }
 `
 
 export const DivH = styled.div`

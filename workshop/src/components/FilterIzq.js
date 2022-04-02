@@ -15,6 +15,7 @@ const FilterIzq = () => {
 
     //-------------------mostrar filtrado izquierdo data----------------------//
     const [data, setData] = useState([]);
+    const [seleccion, setSeleccion] = useState([]);
 
     const getData = () => {
         axios
@@ -24,7 +25,7 @@ const FilterIzq = () => {
                 console.log(error);
             });
     };
-    useEffect(() => {
+    useEffect((e) => {
         getData();
     }, []);
 
@@ -52,7 +53,7 @@ const FilterIzq = () => {
     let resultLenguaje = lenguaje.filter((item, index) => {
         return lenguaje.indexOf(item) === index;
     })
-    
+
     let level = data.map((element) => element.audience_level);
     let resultLevel = level.filter((item, index) => {
         return level.indexOf(item) === index;
@@ -64,7 +65,7 @@ const FilterIzq = () => {
     const location = useLocation();
 
     const { search } = location;
-    const { q = "" } = querystring.parse(search);
+    const { q = '' } = querystring.parse(search);
 
     const [values, handleInputChange, resetForm] = useForm({
         searchText: q,
@@ -80,149 +81,162 @@ const FilterIzq = () => {
     const dataFiltered = getSearchByName(searchText, data);
 
 
+    //-------------filtrado  por check------------//
+
+    const onChanged = e => {
+        console.log(e);
+        setSeleccion([
+            ...seleccion,
+            e.currentTarget.value])
+    }
+    console.log(seleccion);
+
+
     return (
         <DivFilIzq>
-            <div className="row">
-                <div className="col-3">
-                    <DivH>
-                        <h4>Filter</h4>
-                        <button>Clear</button>
-                    </DivH>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-3">
+                        <DivH>
+                            <h4>Filter</h4>
+                            <button>Clear</button>
+                        </DivH>
 
-                    <hr />
-                    <form onSubmit={handleSubmit}>
-                        <InputSearch
-                            type="text"
-                            placeholder="Search"
-                            className="form-control"
-                            name="searchText"
-                            autoComplete="off"
-                            value={searchText}
-                            onChange={handleInputChange}
-                        />
-                    </form>
-                    {/* <SearchIcon/> */}
+                        <hr />
+                        <form onSubmit={handleSubmit}>
+                            <InputSearch
+                                type="text"
+                                placeholder="Search"
+                                className="form-control"
+                                name="searchText"
+                                autoComplete="off"
+                                value={searchText}
+                                onChange={handleInputChange}
+                            />
+                        </form>
+                        {/* <SearchIcon/> */}
 
-                    <br></br>
-                    <Accordion>
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>Industry Segment</Accordion.Header>
-                            <Accordion.Body>
-                                {resultIndustry.map((element, index) => (
-                                    <Form key={index}>
-                                        <div className="mb-3">
-                                            <Form.Check
-                                                type="checkbox"
-                                                id={element}
-                                                label={element}
-                                                onChange = {onChanged}
-                                                value = {element}
-                                            />
-                                        </div>
-                                    </Form>
-                                ))}
-                            </Accordion.Body>
-                        </Accordion.Item>
+                        <br></br>
+                        <Accordion>
+                            <Accordion.Item eventKey="0">
+                                <Accordion.Header>Industry Segment</Accordion.Header>
+                                <Accordion.Body>
+                                    {resultIndustry.map((element, index) => (
+                                        <Form key={index}>
+                                            <div className="mb-3">
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id={element}
+                                                    label={element}
+                                                    onChange={onChanged}
+                                                // value = {element}
+                                                />
+                                            </div>
+                                        </Form>
+                                    ))}
+                                </Accordion.Body>
+                            </Accordion.Item>
 
-                        <Accordion.Item eventKey="1">
-                            <Accordion.Header>Primary Topic</Accordion.Header>
-                            <Accordion.Body>
-                                {resultPrimary.map((element, index) => (
-                                    <Form key={index}>
-                                        <div className="mb-3">
-                                            <Form.Check
-                                                type="checkbox"
-                                                id={element}
-                                                label={element}
-                                                onChange = {onChanged}
-                                                value = {element}
-                                            />
-                                        </div>
-                                    </Form>
-                                ))}
-                            </Accordion.Body>
-                        </Accordion.Item>
+                            <Accordion.Item eventKey="1">
+                                <Accordion.Header>Primary Topic</Accordion.Header>
+                                <Accordion.Body>
+                                    {resultPrimary.map((element, index) => (
+                                        <Form key={index}>
+                                            <div className="mb-3">
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id={element}
+                                                    label={element}
+                                                    onChange={onChanged}
+                                                // value = {element}
+                                                />
+                                            </div>
+                                        </Form>
+                                    ))}
+                                </Accordion.Body>
+                            </Accordion.Item>
 
-                        <Accordion.Item eventKey="2">
-                            <Accordion.Header>Session type</Accordion.Header>
-                            <Accordion.Body>
-                                {resultSession.map((element, index) => (
-                                    <Form key={index}>
-                                        <div className="mb-3">
-                                            <Form.Check
-                                                type="checkbox"
-                                                id={element}
-                                                label={element}
-                                                onChange = {onChanged}
-                                                value = {element}
-                                            />
-                                        </div>
-                                    </Form>
-                                ))}
-                            </Accordion.Body>
-                        </Accordion.Item>
+                            <Accordion.Item eventKey="2">
+                                <Accordion.Header>Session type</Accordion.Header>
+                                <Accordion.Body>
+                                    {resultSession.map((element, index) => (
+                                        <Form key={index}>
+                                            <div className="mb-3">
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id={element}
+                                                    label={element}
+                                                    onChange={onChanged}
+                                                // value = {element}
+                                                />
+                                            </div>
+                                        </Form>
+                                    ))}
+                                </Accordion.Body>
+                            </Accordion.Item>
 
-                        <Accordion.Item eventKey="3">
-                            <Accordion.Header>Audience Type</Accordion.Header>
-                            <Accordion.Body>
-                                {resultAudience.map((element, index) => (
-                                    <Form key={index}>
-                                        <div className="mb-3">
-                                            <Form.Check
-                                                type="checkbox"
-                                                id={element}
-                                                label={element}
-                                                onChange = {onChanged}
-                                                value = {element}
-                                            />
-                                        </div>
-                                    </Form>
-                                ))}
-                            </Accordion.Body>
-                        </Accordion.Item>
+                            <Accordion.Item eventKey="3">
+                                <Accordion.Header>Audience Type</Accordion.Header>
+                                <Accordion.Body>
+                                    {resultAudience.map((element, index) => (
+                                        <Form key={index}>
+                                            <div className="mb-3">
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id={element}
+                                                    label={element}
+                                                    onChange={onChanged}
+                                                // value = {element}
+                                                />
+                                            </div>
+                                        </Form>
+                                    ))}
+                                </Accordion.Body>
+                            </Accordion.Item>
 
-                        <Accordion.Item eventKey="4">
-                            <Accordion.Header>Lenguage</Accordion.Header>
-                            <Accordion.Body>
-                                {resultLenguaje.map((element, index) => (
-                                    <Form key={element}>
-                                        <div className="mb-3">
-                                            <Form.Check
-                                                type="checkbox"
-                                                id={element}
-                                                label={element}
-                                                onChange = {onChanged}
-                                                value = {element}
-                                            />
-                                        </div>
-                                    </Form>
-                                ))}
-                            </Accordion.Body>
-                        </Accordion.Item>
+                            <Accordion.Item eventKey="4">
+                                <Accordion.Header>Lenguage</Accordion.Header>
+                                <Accordion.Body>
+                                    {resultLenguaje.map((element, index) => (
+                                        <Form key={element}>
+                                            <div className="mb-3">
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id={element}
+                                                    label={element}
+                                                    onChange={onChanged}
+                                                // value = {element}
+                                                />
+                                            </div>
+                                        </Form>
+                                    ))}
+                                </Accordion.Body>
+                            </Accordion.Item>
 
-                        <Accordion.Item eventKey="5">
-                            <Accordion.Header>Audence Level</Accordion.Header>
-                            <Accordion.Body>
-                                {resultLevel.map((element, index) => (
-                                    <Form key={index}>
-                                        <div className="mb-3">
-                                            <Form.Check
-                                                type="checkbox"
-                                                id={element}
-                                                label={element}
-                                                onChange = {onChanged}
-                                                value = {element}
-                                            />
-                                        </div>
-                                    </Form>
-                                ))}
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
-                </div>
+                            <Accordion.Item eventKey="5">
+                                <Accordion.Header>Audence Level</Accordion.Header>
+                                <Accordion.Body>
+                                    {resultLevel.map((element, index) => (
+                                        <Form key={index}>
+                                            <div className="mb-3">
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    id={element}
+                                                    label={element}
+                                                    onChange={onChanged}
+                                                // value = {element}
+                                                />
+                                            </div>
+                                        </Form>
+                                    ))}
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </Accordion>
+                    </div>
 
-                <div className="col-7">
-                    <Cards data={dataFiltered} />
+                    <div className="col-md-8">
+                        <Cards data={dataFiltered} />
+                    </div>
                 </div>
             </div>
         </DivFilIzq>
