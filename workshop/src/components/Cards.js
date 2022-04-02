@@ -2,34 +2,20 @@ import React, { useEffect, useState } from "react";
 import "../styles/Cards.css";
 import star from "../Images/iconmonstr-star-thin.svg";
 
-const Cards = ({Filtrados}) => {
+const Cards = ({data}) => {
 
-  const [data, setData] = useState([]);
-  const [date, setDate] = useState([])
-
-  const url = "https://workshopdaniel.herokuapp.com/sessions";
-
-  const fetchFunction = async () => {
-    try {
-      const request = await fetch(url);
-      const data = await request.json();
-      setData(data);
-      dates(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const dates = (dates) => {
-    dates.map((element) => {
+  const dates = () => {
+    data.map((element) => {
       const dateNew = new Date(element.date).toDateString();
-      console.log(dateNew);
+      return dateNew;
     });
   };
 
-  useEffect(() => {
-    fetchFunction();
-  }, []);
+  dates();
+
+  // useEffect(() => {
+  //   fetchFunction();
+  // }, []);
 
   return (
     <div className="container-main">

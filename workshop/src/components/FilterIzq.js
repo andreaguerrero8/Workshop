@@ -181,7 +181,7 @@ const FilterIzq = () => {
         </div>
 
         <div className="col-7">
-          <Cards Filtrados={dataFiltered} />
+          <Cards data={dataFiltered} />
 
           {/* <CardsFilt data={dataFiltered} /> */}
         </div>
