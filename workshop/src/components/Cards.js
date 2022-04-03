@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Cards.css";
 import star from "../Images/iconmonstr-star-thin.svg";
+import { Link } from "react-router-dom";
 
 const Cards = ({ data }) => {
   const [dates, setDates] = useState([]);
@@ -58,6 +59,12 @@ const Cards = ({ data }) => {
               <h4 className="card-mainTopic1">
                 Tema principal: <span>{element.primary_topic}</span>
               </h4>
+              <br></br>
+
+              <button onClick={()=>{
+                localStorage.setItem('Id', JSON.stringify(element.id));
+              }
+              }><Link to='/detalle'>Ver más...</Link></button>
             </div>
           );
         })}

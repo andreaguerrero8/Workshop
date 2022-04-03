@@ -12,9 +12,12 @@ const getMoviesByName = (busqueda) => {
         console.log(error);
     })
 
-
-    return  data.filter(elem => elem.title.toLocaleLowerCase()
-        .includes(busqueda.toLocaleLowerCase()))
+    return  data.filter(element =>
+      element.title.toLocaleLowerCase().includes(seleccion.toLocaleLowerCase()) ||
+      element.description.toLocaleLowerCase().includes(seleccion.toLocaleLowerCase()) ||
+      element.industry_segment.toLocaleLowerCase().includes(seleccion.toLocaleLowerCase()) ||
+      element.primary_topic.toLocaleLowerCase().includes(seleccion.toLocaleLowerCase()
+      ))
 }
 
 export default getMoviesByName

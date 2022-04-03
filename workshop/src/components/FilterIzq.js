@@ -9,6 +9,7 @@ import { url } from "../url/url";
 import Cards from "../components/Cards";
 import { CardsFilt } from "../components/CardsFilt";
 import getSearchByName from "../selectors/getSearchByName";
+import getFilterCheck from "../selectors/getFilterCheck";
 
 const FilterIzq = () => {
 
@@ -81,16 +82,31 @@ const FilterIzq = () => {
     const dataFiltered = getSearchByName(searchText, data);
 
 
+
     //-------------filtrado  por check------------//
 
     const onChanged = e => {
-        console.log(e);
-        setSeleccion([
-            ...seleccion,
-            e.currentTarget.value])
+        let check = document.querySelectorAll('.form-check-input')
+
+        let algo = []
+        check.forEach(e => {
+            if (e.checked === true) {
+                algo.push(e.value)
+            }
+        })
+
+        setSeleccion(algo)
+
+
+        const dataFilCheck = getFilterCheck(seleccion);
+        console.log(dataFilCheck);
+
     }
     console.log(seleccion);
 
+    const handleLimpiar =() =>{
+        window.location.reload()
+    }
 
     return (
         <DivFilIzq>
@@ -99,7 +115,7 @@ const FilterIzq = () => {
                     <div className="col-md-3">
                         <DivH>
                             <h4>Filter</h4>
-                            <button>Clear</button>
+                            <button onClick={handleLimpiar}>Clear</button>
                         </DivH>
 
                         <hr />
@@ -114,7 +130,6 @@ const FilterIzq = () => {
                                 onChange={handleInputChange}
                             />
                         </form>
-                        {/* <SearchIcon/> */}
 
                         <br></br>
                         <Accordion>
@@ -129,7 +144,8 @@ const FilterIzq = () => {
                                                     id={element}
                                                     label={element}
                                                     onChange={onChanged}
-                                                // value = {element}
+                                                    value={element}
+
                                                 />
                                             </div>
                                         </Form>
@@ -148,7 +164,8 @@ const FilterIzq = () => {
                                                     id={element}
                                                     label={element}
                                                     onChange={onChanged}
-                                                // value = {element}
+                                                    value={element}
+
                                                 />
                                             </div>
                                         </Form>
@@ -167,7 +184,8 @@ const FilterIzq = () => {
                                                     id={element}
                                                     label={element}
                                                     onChange={onChanged}
-                                                // value = {element}
+                                                    value={element}
+
                                                 />
                                             </div>
                                         </Form>
@@ -186,7 +204,8 @@ const FilterIzq = () => {
                                                     id={element}
                                                     label={element}
                                                     onChange={onChanged}
-                                                // value = {element}
+                                                    value={element}
+
                                                 />
                                             </div>
                                         </Form>
@@ -205,7 +224,8 @@ const FilterIzq = () => {
                                                     id={element}
                                                     label={element}
                                                     onChange={onChanged}
-                                                // value = {element}
+                                                    value={element}
+
                                                 />
                                             </div>
                                         </Form>
@@ -224,7 +244,8 @@ const FilterIzq = () => {
                                                     id={element}
                                                     label={element}
                                                     onChange={onChanged}
-                                                // value = {element}
+                                                    value={element}
+
                                                 />
                                             </div>
                                         </Form>
@@ -234,7 +255,8 @@ const FilterIzq = () => {
                         </Accordion>
                     </div>
 
-                    <div className="col-md-8">
+                    <div className="col-md-8" id='col8'>
+
                         <Cards data={dataFiltered} />
                     </div>
                 </div>
@@ -244,3 +266,4 @@ const FilterIzq = () => {
 };
 
 export default FilterIzq;
+
